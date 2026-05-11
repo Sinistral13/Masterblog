@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Update Blog Post</h1>
+
+    <a href="/" class="add-button">← Back to Home</a>
+
+    <div class="center-container">
+        <div class="post-form">
+
+            <form method="POST">
+
+                <label>Title</label>
+                <input type="text" name="title" value="{{ post.title }}" required>
+
+                <label>Author</label>
+                <input type="text" name="author" value="{{ post.author }}" required>
+
+                <label>Content</label>
+                <textarea name="content" rows="6" required>{{ post.content }}</textarea>
+
+                <button type="submit">Update Post</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>
