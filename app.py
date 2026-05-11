@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
 import json
+from flask import Flask, render_template, request, redirect, url_for
+
 
 app = Flask(__name__)
 
@@ -34,7 +35,7 @@ def add():
         blog_posts = load_posts()
 
         new_post = {
-            "id": max([p["id"] for p in blog_posts], default=0) + 1,
+            "id": max([post["id"] for post in blog_posts], default=0) + 1,
             "title": request.form.get("title"),
             "author": request.form.get("author"),
             "content": request.form.get("content")
@@ -76,11 +77,11 @@ def update(post_id):
         posts = json.load(file)
 
     post = next((post for post in posts if post['id'] == post_id), None)
-    
+
     #not possible in this structure, added for scaling
     if post is None:
         return "Post not found", 404
-    
+
     if request.method == 'POST':
         post['title'] = request.form.get('title')
         post['author'] = request.form.get('author')
